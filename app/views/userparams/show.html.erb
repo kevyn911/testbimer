@@ -1,0 +1,9 @@
+<h2>Hello, <%= @userparam.firstname%>!<br> It's your parameters:</h2><br>
+<%= image_tag(@userparam.avatar_url, height: '200', width: '200') %></br>
+Firstname:  <%= @userparam.firstname%> </br>
+Lastname:  <%= @userparam.lastname%> </br>
+Country:  <%= @userparam.country%></br>
+City:    <%= @userparam.city%></br>
+Data of birthday:  <%= @userparam.dofb.strftime("%b %d %Y")%></br>
+Phone: <%= @userparam.phone%> <br>
+<%= link_to "Edit", edit_userparam_path(@userparam.id)%>

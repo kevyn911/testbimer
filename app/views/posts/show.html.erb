@@ -1,0 +1,47 @@
+<%= stylesheet_link_tag 'animate' %>
+
+<h1 class="showcarname"><%= @post.name %></h1>
+<div class="elements">
+<div class="showelem1"><%= image_tag(@post.photo, :class => "showcar") %></div>
+<div class="showelem2 wow fadeInRight" data-wow-delay="0.6s" data-wow-offset="20">
+<h2 class="char"><center>Характеристики:</center></h2>
+<p align="center"> В розробці </p>
+
+
+</div>
+</div>
+<h4 class="cartext"><%= @post.text %></h4>
+
+<hr>
+<% @images.each do |image| %>
+<p><%= image_tag(image.image, :class => "showphotos") %></p>
+<hr>
+<% end %>
+
+<hr>
+
+<% @comments.each do |comment| %>
+<p> User <b style="color:#0489B1"><%= comment.user.nickname %></b></p>
+<p><%= comment.text %></p>
+<p>Create at: <%= comment.created_at%>
+</p>
+<hr>
+<% end %>
+
+
+<%= form_for :postcomment, url: post_postcomments_path(post_id: @post.id) do |f| %>
+<% if flash[:notice] %>
+<div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<p><%= f.label "Write comment" %></p>
+<div class="textareadiv"><%= f.text_area :text, cols: 20, rows: 5, :class => "textarea" %></div><br />
+
+<p><%= f.submit "Send"%></p>
+
+<% end %>
+
+<%= javascript_include_tag 'wow.min'%>
+<script>
+  	new WOW().init();
+</script>
